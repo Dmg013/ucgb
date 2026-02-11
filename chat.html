@@ -8,6 +8,7 @@
     input, select { padding:8px; margin-top:10px; border-radius:5px; border:none; font-size:14px; }
     button { padding:8px 12px; border-radius:5px; border:none; margin-left:5px; background:blue; color:white; cursor:pointer; }
     li { list-style:none; text-align:left; margin:5px 0; }
+    .system { color:orange; font-style:italic; }
   </style>
 </head>
 <body>
@@ -40,6 +41,15 @@ const colorInput = document.getElementById("color");
 let messages = JSON.parse(localStorage.getItem("arcadeChat")) || [];
 messages.forEach(m => addMessage(m));
 
+// Fake “other players joining” every 10–20 sec
+const fakeUsers = ["Neo", "Luna", "Pixel", "Blaze", "Shadow", "TacoBot"];
+function randomJoin(){
+  const user = fakeUsers[Math.floor(Math.random()*fakeUsers.length)];
+  const msgObj = {user:"System", text:`${user} joined the arcade!`, color:"orange", system:true};
+  addMessage(msgObj);
+}
+setInterval(randomJoin, Math.random()*10000 + 10000); // 10-20 sec
+
 // Hidden taco admin
 let keys = "";
 document.addEventListener("keydown", e => {
@@ -55,8 +65,9 @@ document.addEventListener("keydown", e => {
 
 function addMessage(msgObj){
   const li = document.createElement("li");
-  li.textContent = msgObj.user + ": " + msgObj.text;
+  li.textContent = msgObj.system ? msgObj.text : msgObj.user + ": " + msgObj.text;
   li.style.color = msgObj.color;
+  if(msgObj.system) li.classList.add("system");
   chat.appendChild(li);
   chat.scrollTop = chat.scrollHeight; // Auto scroll
 }
@@ -72,6 +83,17 @@ function sendMsg(){
   localStorage.setItem("arcadeChat", JSON.stringify(messages));
   input.value = "";
 }
+
+// Fake messages from other users
+function fakeMessage(){
+  const user = fakeUsers[Math.floor(Math.random()*fakeUsers.length)];
+  const colors = ["white","yellow","cyan","lime","pink"];
+  const color = colors[Math.floor(Math.random()*colors.length)];
+  const phrases = ["GG!", "Nice!", "LOL", "Watch out!", "Cool!", "Let's go!"];
+  const msgObj = {user, text:phrases[Math.floor(Math.random()*phrases.length)], color};
+  addMessage(msgObj);
+}
+setInterval(fakeMessage, Math.random()*7000 + 5000); // 5–12 sec
 </script>
 
 </body>
