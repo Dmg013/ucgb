@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Game Hub</title>
+  <title>My Game Hub 🎮</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,49 +12,13 @@
 
 <div class="grid" id="gameGrid">
 
-  <a href="game1.html" class="card">
-    <h2>Clicker Game</h2>
-  </a>
-
-  <a href="game2.html" class="card">
-    <h2>Dodge Game</h2>
-  </a>
-
-  <a href="game3.html" class="card">
-    <h2>Reaction Game</h2>
-  </a>
-
-  <a href="game4.html" class="card">
-    <h2>Number Guess</h2>
-  </a>
-
-  <a href="leaderboard.html" class="card">
-    <h2>Leaderboard 🏆</h2>
-  </a>
+  <a href="game1.html" class="card">Clicker Game</a>
+  <a href="game2.html" class="card">Dodge Game</a>
+  <a href="game3.html" class="card">Reaction Game</a>
+  <a href="game4.html" class="card">Number Guess</a>
+  <a href="game5.html" class="card">2-Player Battle</a>
+  <a href="game6.html" class="card">Car Game</a>
+  <a href="chat.html" class="card">Chat Room</a>
+  <a href="leaderboard.html" class="card">Leaderboard 🏆</a>
 
 </div>
-
-<script>
-function searchGames() {
-  let input = document.getElementById("search").value.toLowerCase();
-  let cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    let text = card.innerText.toLowerCase();
-    card.style.display = text.includes(input) ? "block" : "none";
-  });
-}
-
-let keys = "";
-document.addEventListener("keydown", e => {
-  keys += e.key.toLowerCase();
-  if (keys.includes("taco")) {
-    alert("🌮 TACO MODE ACTIVATED 🌮");
-    document.body.style.background = "darkred";
-    keys = "";
-  }
-});
-</script>
-
-</body>
-</html>
