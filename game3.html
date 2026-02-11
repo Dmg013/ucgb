@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reaction Game</title>
+</head>
+<body style="text-align:center;background:black;color:white;font-family:sans-serif;">
+
+<h1>Click When Green!</h1>
+<div id="box" style="width:200px;height:200px;margin:50px auto;background:red;"></div>
+<p id="result"></p>
+
+<script>
+let box = document.getElementById("box");
+let startTime;
+
+setTimeout(() => {
+  box.style.background = "green";
+  startTime = Date.now();
+}, Math.random() * 3000 + 2000);
+
+box.onclick = function() {
+  if (box.style.background === "green") {
+    let reaction = Date.now() - startTime;
+    document.getElementById("result").innerText = "Reaction Time: " + reaction + "ms";
+  }
+};
+</script>
+
+</body>
+</html>
