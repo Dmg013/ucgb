@@ -5,4 +5,74 @@
   <style>
     body { margin:0; font-family:sans-serif; background:#111; color:white; text-align:center; }
     #chatBox { width:400px; height:400px; border:2px solid #444; margin:20px auto; padding:10px; overflow-y:scroll; background:#222; border-radius:10px;}
-    input, select { padding:8px; margin-top:10px; border-radius:5px; border:none; fon
+    input, select { padding:8px; margin-top:10px; border-radius:5px; border:none; font-size:14px; }
+    button { padding:8px 12px; border-radius:5px; border:none; margin-left:5px; background:blue; color:white; cursor:pointer; }
+    li { list-style:none; text-align:left; margin:5px 0; }
+  </style>
+</head>
+<body>
+
+<h1>Arcade Chat 💬</h1>
+
+<input id="username" placeholder="Enter username">
+<select id="color">
+  <option value="white">White</option>
+  <option value="yellow">Yellow</option>
+  <option value="cyan">Cyan</option>
+  <option value="lime">Lime</option>
+  <option value="pink">Pink</option>
+</select>
+<br>
+<input id="msg" placeholder="Type message">
+<button onclick="sendMsg()">Send</button>
+
+<div id="chatBox">
+  <ul id="chat"></ul>
+</div>
+
+<script>
+const chat = document.getElementById("chat");
+const input = document.getElementById("msg");
+const usernameInput = document.getElementById("username");
+const colorInput = document.getElementById("color");
+
+// Load messages from localStorage
+let messages = JSON.parse(localStorage.getItem("arcadeChat")) || [];
+messages.forEach(m => addMessage(m));
+
+// Hidden taco admin
+let keys = "";
+document.addEventListener("keydown", e => {
+  keys += e.key.toLowerCase();
+  if(keys.includes("taco")) {
+    alert("🌮 ADMIN MODE 🌮\nAll messages cleared!");
+    messages = [];
+    localStorage.removeItem("arcadeChat");
+    chat.innerHTML = "";
+    keys = "";
+  }
+});
+
+function addMessage(msgObj){
+  const li = document.createElement("li");
+  li.textContent = msgObj.user + ": " + msgObj.text;
+  li.style.color = msgObj.color;
+  chat.appendChild(li);
+  chat.scrollTop = chat.scrollHeight; // Auto scroll
+}
+
+function sendMsg(){
+  const user = usernameInput.value.trim() || "Player";
+  const color = colorInput.value;
+  const text = input.value.trim();
+  if(text === "") return;
+  const msgObj = { user, text, color };
+  messages.push(msgObj);
+  addMessage(msgObj);
+  localStorage.setItem("arcadeChat", JSON.stringify(messages));
+  input.value = "";
+}
+</script>
+
+</body>
+</html>
