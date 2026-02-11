@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat Room</title>
+</head>
+<body style="background:#111;color:white;font-family:sans-serif;text-align:center;">
+<h1>Local Chat 💬</h1>
+
+<input id="msg" placeholder="Type message">
+<button onclick="sendMsg()">Send</button>
+
+<ul id="chat"></ul>
+
+<script>
+let chatList = document.getElementById("chat");
+
+function sendMsg() {
+  let input = document.getElementById("msg");
+  if(input.value.trim() !== "") {
+    let li = document.createElement("li");
+    li.textContent = input.value;
+    chatList.appendChild(li);
+    input.value = "";
+    localStorage.setItem("chat", chatList.innerHTML);
+  }
+}
+
+window.onload = function() {
+  chatList.innerHTML = localStorage.getItem("chat") || "";
+};
+</script>
+</body>
+</html>
