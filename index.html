@@ -41,3 +41,16 @@ function searchGames() {
 <audio autoplay loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+let keys = "";
+
+document.addEventListener("keydown", e => {
+  keys += e.key;
+  if (keys.includes("taco")) {
+    alert("🌮 SECRET TACO MODE ACTIVATED 🌮");
+    document.body.style.background = "darkred";
+    keys = "";
+  }
+});
+</script>
