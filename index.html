@@ -8,12 +8,33 @@
 
 <h1>My Game Hub 🎮</h1>
 
-<div class="grid">
+<input type="text" id="search" placeholder="Search games..." onkeyup="searchGames()">
+
+<div class="grid" id="gameGrid">
+
   <a href="game1.html" class="card">
+    <img src="https://via.placeholder.com/150">
     <h2>Clicker Game</h2>
-    <p>Click and increase your score!</p>
   </a>
+
+  <a href="game2.html" class="card">
+    <img src="https://via.placeholder.com/150">
+    <h2>Dodge Game</h2>
+  </a>
+
 </div>
+
+<script>
+function searchGames() {
+  let input = document.getElementById("search").value.toLowerCase();
+  let cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    let text = card.innerText.toLowerCase();
+    card.style.display = text.includes(input) ? "block" : "none";
+  });
+}
+</script>
 
 </body>
 </html>
