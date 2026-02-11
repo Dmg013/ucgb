@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Chat Room</title>
+  <title>Arcade Chat Room 💬</title>
+  <style>
+    body { margin:0; font-family:sans-serif; background:#111; color:white; text-align:center; }
+    #chatBox { width:400px; height:400px; border:2px solid #444; margin:20px auto; padding:10px; overflow-y:scroll; background:#222; border-radius:10px;}
+    input { padding:10px; width:300px; border-radius:5px; border:none; margin-top:10px; }
+    button { padding:10px; border-radius:5px; border:none; margin-left:5px; background:blue; color:white; cursor:pointer; }
+    li { list-style:none; text-align:left; margin:5px 0; }
+  </style>
 </head>
-<body style="background:#111;color:white;font-family:sans-serif;text-align:center;">
-<h1>Local Chat 💬</h1>
+<body>
 
-<input id="msg" placeholder="Type message">
+<h1>Arcade Chat 💬</h1>
+<div id="chatBox">
+  <ul id="chat"></ul>
+</div>
+
+<input id="msg" placeholder="Type your message">
 <button onclick="sendMsg()">Send</button>
 
-<ul id="chat"></ul>
-
 <script>
-let chatList = document.getElementById("chat");
+const chat = document.getElementById("chat");
+const input = document.getElementById("msg");
 
-function sendMsg() {
-  let input = document.getElementById("msg");
-  if(input.value.trim() !== "") {
-    let li = document.createElement("li");
-    li.textContent = input.value;
-    chatList.appendChild(li);
-    input.value = "";
-    localStorage.setItem("chat", chatList.innerHTML);
-  }
-}
-
-window.onload = function() {
-  chatList.innerHTML = localStorage.getItem("chat") || "";
-};
-</script>
-</body>
-</html>
+// Load messages from localStorage
+let messages = JSON.parse(localStorage.getItem("arcadeChat")) || [];
+me
