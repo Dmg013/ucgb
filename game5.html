@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>2 Player Battle</title>
+</head>
+<body style="margin:0; background:black; overflow:hidden;">
+
+<div id="p1" style="width:40px;height:40px;background:blue;position:absolute;left:100px;top:200px;"></div>
+<div id="p2" style="width:40px;height:40px;background:red;position:absolute;left:500px;top:200px;"></div>
+
+<script>
+let p1 = document.getElementById("p1");
+let p2 = document.getElementById("p2");
+
+document.addEventListener("keydown", e => {
+  let step = 10;
+
+  if (e.key === "w") p1.style.top = p1.offsetTop - step + "px";
+  if (e.key === "s") p1.style.top = p1.offsetTop + step + "px";
+  if (e.key === "a") p1.style.left = p1.offsetLeft - step + "px";
+  if (e.key === "d") p1.style.left = p1.offsetLeft + step + "px";
+
+  if (e.key === "ArrowUp") p2.style.top = p2.offsetTop - step + "px";
+  if (e.key === "ArrowDown") p2.style.top = p2.offsetTop + step + "px";
+  if (e.key === "ArrowLeft") p2.style.left = p2.offsetLeft - step + "px";
+  if (e.key === "ArrowRight") p2.style.left = p2.offsetLeft + step + "px";
+});
+</script>
+
+</body>
+</html>
