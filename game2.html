@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dodge Game</title>
+</head>
+<body style="margin:0; overflow:hidden; background:black;">
+
+<div id="player" style="width:50px;height:50px;background:lime;position:absolute;bottom:10px;left:50%;"></div>
+<div id="enemy" style="width:50px;height:50px;background:red;position:absolute;top:0;left:50%;"></div>
+
+<script>
+let player = document.getElementById("player");
+let enemy = document.getElementById("enemy");
+let enemyTop = 0;
+
+document.addEventListener("keydown", e => {
+  let left = player.offsetLeft;
+  if (e.key === "ArrowLeft") player.style.left = left - 20 + "px";
+  if (e.key === "ArrowRight") player.style.left = left + 20 + "px";
+});
+
+function moveEnemy() {
+  enemyTop += 4;
+  enemy.style.top = enemyTop + "px";
+
+  if (enemyTop > window.innerHeight) {
+    enemyTop = 0;
+  }
+
+  requestAnimationFrame(moveEnemy);
+}
+
+moveEnemy();
+</script>
+
+</body>
+</html>
