@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Car Game</title>
+</head>
+<body style="margin:0; background:gray; overflow:hidden;">
+
+<div id="car" style="width:40px;height:80px;background:black;position:absolute;bottom:20px;left:50%;"></div>
+
+<script>
+let car = document.getElementById("car");
+
+document.addEventListener("keydown", e => {
+  let step = 15;
+  if (e.key === "ArrowLeft") car.style.left = car.offsetLeft - step + "px";
+  if (e.key === "ArrowRight") car.style.left = car.offsetLeft + step + "px";
+});
+</script>
+
+</body>
+</html>
